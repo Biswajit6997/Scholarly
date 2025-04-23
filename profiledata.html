@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Profile Data</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .input-section {
+        margin-bottom: 20px;
+      }
+
+      .input-section label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .input-section select,
+      .input-section button {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .summary-section {
+        margin-top: 20px;
+      }
+
+      .summary-box {
+        background-color: #fff2b3;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #ffe58a;
+        min-height: 100px;
+      }
+
+      .save-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+      }
+
+      .save-buttons button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .save-buttons .pdf {
+        background-color: #d9534f;
+        color: white;
+      }
+
+      .save-buttons .docx {
+        background-color: #0275d8;
+        color: white;
+      }
+
+      .save-buttons .txt {
+        background-color: #5cb85c;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Show Profile Data</h1>
+
+      <div class="input-section">
+        <label for="publication-year">Your publications for year:</label>
+        <select id="publication-year">
+          <option value="">Select year</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          
+          <!-- Add more years dynamically -->
+        </select>
+
+        <label for="publication-list">Select the publication:</label>
+        <select id="publication-list" disabled>
+          <option value="">Select a publication</option>
+          <!-- Publications will populate here dynamically -->
+        </select>
+
+        <button id="generate-summary" disabled>Generate Summary</button>
+      </div>
+
+      <div class="summary-section">
+        <label for="publication-summary">Your publication summary:</label>
+        <div class="summary-box" id="publication-summary">
+          <!-- Summary will appear here -->
+        </div>
+
+        <div class="save-buttons">
+          <button class="pdf" id="save-pdf">Save as PDF</button>
+          <button class="docx" id="save-docx">Save as .docx</button>
+          <button class="txt" id="save-txt">Save as .txt</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock data for testing
+      const mockData = {
+        2023: ["Publication 1", "Publication 2"],
+        2022: ["Publication A", "Publication B"],
+        2021: ["Publication X", "Publication Y"],
+      };
+
+      const publicationYear = document.getElementById("publication-year");
+      const publicationList = document.getElementById("publication-list");
+      const generateSummaryButton = document.getElementById("generate-summary");
+      const publicationSummary = document.getElementById("publication-summary");
+
+      // Populate publications based on selected year
+      publicationYear.addEventListener("change", () => {
+        const year = publicationYear.value;
+
+        if (year && mockData[year]) {
+          publicationList.innerHTML =
+            '<option value="">Select a publication</option>';
+          mockData[year].forEach((pub) => {
+            const option = document.createElement("option");
+            option.value = pub;
+            option.textContent = pub;
+            publicationList.appendChild(option);
+          });
+          publicationList.disabled = false;
+        } else {
+          publicationList.innerHTML =
+            '<option value="">Select a publication</option>';
+          publicationList.disabled = true;
+        }
+
+        generateSummaryButton.disabled = true;
+      });
+
+      // Enable Generate Summary button when publication is selected
+      publicationList.addEventListener("change", () => {
+        generateSummaryButton.disabled = !publicationList.value;
+      });
+
+      // Generate publication summary
+      generateSummaryButton.addEventListener("click", () => {
+        const selectedPublication = publicationList.value;
+
+        if (selectedPublication) {
+          publicationSummary.textContent = `Summary for ${selectedPublication} `;
+        }
+      });
+
+      // Save buttons functionality
+      document.getElementById("save-pdf").addEventListener("click", () => {
+        const content = publicationSummary.textContent;
+        const blob = new Blob([content], { type: "application/pdf" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "publication_summary.pdf";
+        link.click();
+      });
+
+      document.getElementById("save-docx").addEventListener("click", () => {
+        const content = publicationSummary.textContent;
+        const blob = new Blob([content], {
+          type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "publication_summary.docx";
+        link.click();
+      });
+
+      document.getElementById("save-txt").addEventListener("click", () => {
+        const content = publicationSummary.textContent;
+        const blob = new Blob([content], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "publication_summary.txt";
+        link.click();
+      });
+    </script>
+  </body>
+</html>

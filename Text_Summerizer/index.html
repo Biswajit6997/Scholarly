@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Summarizer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Scholarly Publication Summarizer :</h1>
+    </header>
+
+    <div class="main">
+      <!-- Left Panel -->
+      <div class="input-section">
+        <textarea id="text-input" placeholder="Enter or paste your text here..." oninput="updateWordCount()"></textarea>
+        <div class="controls">
+          <p id="input-word-count">Word Count: 0</p>
+          <label for="summary-length">Summary Length:</label>
+          <input type="range" id="summary-length" min="1" max="5" value="3">
+          <button class="summarize-button" onclick="summarizeText()">Summarize</button>
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <div class="output-section" id="summary-output">
+        <div class="summary-header">
+          <h2>Summary:</h2>
+          <button class="delete-button" onclick="deleteSummary()">Delete</button>
+        </div>
+        <p id="summary-text"></p>
+        <p id="summary-word-count">Word Count: 0</p>
+        <div class="output-controls">
+          <button onclick="copySummary()">Copy</button>
+          <button onclick="downloadSummary()">Download</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

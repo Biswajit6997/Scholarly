@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scholarly</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #984545;
+    }
+
+    .container {
+    height: 700px;
+      width: 700px;
+      background: white;
+      border: 2px solid #000;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    #account-button {
+      background-color: #fff;
+      border: 2px solid #000;
+      border-radius: 50%;
+      padding: 10px;
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    main {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #profile-link {
+      width: calc(100% - 40px);
+      padding: 10px;
+      border: 2px solid #000;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    #get-data {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: 2px solid #000;
+      background-color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    #get-data:hover {
+      background-color: #f0f0f0;
+    }
+    .header{
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 >Scholarly</h1>
+      <button id="account-button">My Account</button>
+    </header>
+    <main>
+      <input type="text" id="profile-link" placeholder="Enter Your Profile Link">
+      <button id="get-data">Get Data</button>
+    </main>
+  </div>
+  <script>
+    document.getElementById('get-data').addEventListener('click', () => {
+      const profileLink = document.getElementById('profile-link').value;
+      if (profileLink) {
+        alert(`Fetching data for: ${profileLink}`);
+        // Add logic to fetch and display data
+      } else {
+        alert('Please enter a profile link.');
+      }
+    });
+
+    document.getElementById('account-button').addEventListener('click', () => {
+      alert('Account settings coming soon!');
+    });
+  </script>
+</body>
+</html>

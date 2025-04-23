@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly -- the Summery Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Scholarly</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <div class="form-container">
+                <h2>Login</h2>
+                <form action="#" method="POST" id="login-form">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="login-email" required>
+
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="login-password" required>
+
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#register" onclick="showRegister()">Register here</a></p>
+            </div>
+
+            <div class="form-container" id="register-form" style="display: none;">
+                <h2>Register</h2>
+                <form action="#" method="POST">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone">
+
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" rows="3"></textarea>
+
+                    <button type="submit">Register</button>
+                </form>
+                <p>Already have an account? <a href="#login" onclick="showLogin()">Login here</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Scholarly. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showRegister() {
+            document.getElementById('register-form').style.display = 'block';
+            document.getElementById('login-form').style.display = 'none';
+        }
+
+        function showLogin() {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('register-form').style.display = 'none';
+        }
+
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Scholarly</div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <div class="auth-container">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" required placeholder="Enter your email">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" required placeholder="Enter your password">
+                    <button type="button" onclick="handleLogin()">Login</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
